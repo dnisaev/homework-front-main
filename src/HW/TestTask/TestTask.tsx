@@ -10,10 +10,10 @@ export const TestTask = () => {
     const inc = () => setSum(sum += 1);
     const reset = () => setSum(0);
 
-    const isPlusActive = sum > 5;
+    const isPlusActive = sum > 2;
     const isResetActive = sum < 1;
 
-    const isPlusWork = sum > 5;
+    const isPlusWork = sum > 2;
     const isResetWork = sum < 1;
 
     return (
