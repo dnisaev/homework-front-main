@@ -9,23 +9,30 @@ export const TestTask = () => {
 
     const inc = () => setSum(sum += 1);
     const reset = () => setSum(0);
-    const isNumStop = sum > 5;
+
+    const isPlusActive = sum > 5;
+    const isResetActive = sum < 1;
+
+    const isPlusWork = sum > 5;
+    const isResetWork = sum < 1;
 
     return (
         <div className={s.mainWrapper}>
             <div className={s.counterMain}>
                 <div className={s.counterSum}>
-                    <span className={isNumStop ? s.counterSumStop : ''}>
+                    <span className={isPlusActive ? s.counterSumStop : ''}>
                         {sum}
                     </span>
                 </div>
                 <div className={s.buttonWrapper}>
                     <Button name={'plus'}
                             onChange={inc}
-                            isActive={isNumStop}/>
+                            isActive={isPlusActive}
+                            isWork={isPlusWork}/>
                     <Button name={'reset'}
                             onChange={reset}
-                            isActive={!isNumStop}/>
+                            isActive={isResetActive}
+                            isWork={isResetWork}/>
                 </div>
             </div>
         </div>

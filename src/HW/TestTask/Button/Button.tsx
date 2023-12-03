@@ -3,14 +3,15 @@ import s from './Button.module.css';
 
 type ButtonPropsType = {
     name: string
-    onChange?: () => void
-    isActive?: boolean
+    onChange: () => void
+    isActive: boolean
+    isWork: boolean
 }
 
 export const Button = (props: ButtonPropsType) => {
 
     const isButtonWork = () => {
-        return props.isActive ? undefined : props.onChange
+        return props.isWork ? undefined : props.onChange
     }
 
     return (
