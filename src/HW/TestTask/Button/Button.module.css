@@ -1,0 +1,25 @@
+.button {
+    height: 30px;
+    min-width: 100px;
+    border: none;
+    border-radius: 5px;
+    background-color: lightgrey;
+
+    color: darkslategrey;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.buttonStop {
+    height: 30px;
+    min-width: 100px;
+    border: none;
+    border-radius: 5px;
+    background-color: lightgrey;
+
+    color: darkslategrey;
+    font-size: 18px;
+    font-weight: 900;
+
+    opacity: 50%;
+}
