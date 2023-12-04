@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import s from './TestTask.module.css';
+import styles from './TestTask.module.css';
 import {Button} from "./Button/Button";
 
 
@@ -7,32 +7,27 @@ export const TestTask = () => {
 
     let [sum, setSum] = useState<number>(0);
 
-    const inc = () => setSum(sum += 1);
-    const reset = () => setSum(0);
+    const doPlus = () => setSum(sum += 1);
+    const doReset = () => setSum(0);
 
-    const isPlusActive = sum > 2;
-    const isResetActive = sum < 1;
-
-    const isPlusWork = sum > 2;
-    const isResetWork = sum < 1;
+    const isSumMoreThenTwo = sum > 2;
+    const isSumLessThenTwo = sum < 1;
 
     return (
-        <div className={s.mainWrapper}>
-            <div className={s.counterMain}>
-                <div className={s.counterSum}>
-                    <span className={isPlusActive ? s.counterSumStop : ''}>
+        <div className={styles.mainWrapper}>
+            <div className={styles.counterMain}>
+                <div className={styles.counterSum}>
+                    <span className={isSumMoreThenTwo ? styles.counterSumStop : ''}>
                         {sum}
                     </span>
                 </div>
-                <div className={s.buttonWrapper}>
+                <div className={styles.buttonWrapper}>
                     <Button name={'plus'}
-                            onChange={inc}
-                            isActive={isPlusActive}
-                            isWork={isPlusWork}/>
+                            onChange={doPlus}
+                            isActive={isSumMoreThenTwo}/>
                     <Button name={'reset'}
-                            onChange={reset}
-                            isActive={isResetActive}
-                            isWork={isResetWork}/>
+                            onChange={doReset}
+                            isActive={isSumLessThenTwo}/>
                 </div>
             </div>
         </div>
