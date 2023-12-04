@@ -9,13 +9,9 @@ type ButtonPropsType = {
 
 export const Button = ({name, onChange, isActive}: ButtonPropsType) => {
 
-    const isButtonWork = () => {
-        return isActive ? undefined : onChange
-    }
-
     return (
         <button className={isActive ? styles.buttonStop : styles.button}
-                onClick={isButtonWork()}>
+                onClick={isActive ? undefined : onChange}>
             <span>
                 {name}
             </span>
