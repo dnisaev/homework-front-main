@@ -2,19 +2,18 @@ import React from "react";
 import styles from './Button.module.css';
 
 type ButtonPropsType = {
-    name: string
-    onChange: () => void
+    title: string
     isActive: boolean
-}
+    onClick: () => void
+};
 
-export const Button = ({name, onChange, isActive}: ButtonPropsType) => {
-
+export const Button = ({title, isActive, onClick}: ButtonPropsType) => {
     return (
         <button className={isActive ? styles.buttonStop : styles.button}
-                onClick={isActive ? undefined : onChange}>
+                onClick={isActive ? undefined : onClick}>
             <span>
-                {name}
+                {title}
             </span>
         </button>
-    )
-}
+    );
+};
