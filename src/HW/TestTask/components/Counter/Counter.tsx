@@ -28,9 +28,15 @@ export const Counter = ({
         <div>
             <div className={styles.counterMain}>
                 <div className={styles.counterSum}>
-                    <span className={currentSumIsNotCorrect ? styles.counterSumStop : ''}>
-                        {valuesIsNotCorrect ? 'error' : currentSumCounter}
-                    </span>
+                    {
+                        valuesIsNotCorrect
+                            ? <span className={styles.valuesIsNotCorrect}>
+                                Ошибка! Пожалуйста, введите корректное значение!
+                            </span>
+                            : <span className={currentSumIsNotCorrect ? styles.counterSumStop : ''}>
+                                {currentSumCounter}
+                            </span>
+                    }
                 </div>
                 <div className={styles.buttonWrapper}>
                     <Button title={'plus'}
