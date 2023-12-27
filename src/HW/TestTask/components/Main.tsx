@@ -5,61 +5,59 @@ import styles from './Main.module.css';
 
 export const Main = () => {
 
-    const [maxValue, setMaxValue] = useState(1);
-    const [minValue, setMinValue] = useState(0);
+    // Settings
 
-    const [maxValueForCounter, setMaxValueForCounter] = useState(maxValue);
-    const [minValueForCounter, setMinValueForCounter] = useState(minValue);
+    const [settingsButtonIsDisable, setSettingsButtonIsDisable] = useState(true);
+    const [settingsMaxValue, setSettingsMaxValue] = useState<number>(1);
+    const [settingsMinValue, setSettingsMinValue] = useState<number>(0);
 
-    const [sum, setSum] = useState(minValue);
-
-    const [buttonIsDisable, setButtonIsDisable] = useState(true);
-
-    const onChangeMaxValue = (event: ChangeEvent<HTMLInputElement>) => {
-        if (Number(event.currentTarget.value) <= 0 || Number(event.currentTarget.value) <= minValue) {
-            setButtonIsDisable(true)
-            setMaxValue(Number(event.currentTarget.value))
+    const onChangeSettingsMaxValue = (event: ChangeEvent<HTMLInputElement>) => {
+        let currentTargetMaxValue = Number(event.currentTarget.value);
+        setSettingsMaxValue(currentTargetMaxValue);
+        if (currentTargetMaxValue <= 0 || currentTargetMaxValue <= settingsMinValue || settingsMinValue < 0) {
+            setSettingsButtonIsDisable(true)
         } else {
-            setButtonIsDisable(false)
-            setMaxValue(Number(event.currentTarget.value))
+            setSettingsButtonIsDisable(false)
         }
     };
-
-    const onChangeMinValue = (event: ChangeEvent<HTMLInputElement>) => {
-        if (Number(event.currentTarget.value) <= 0 || Number(event.currentTarget.value) >= maxValue) {
-            setButtonIsDisable(true)
-            setMinValue(Number(event.currentTarget.value))
+    const onChangeSettingsMinValue = (event: ChangeEvent<HTMLInputElement>) => {
+        let currentTargetMinValue = Number(event.currentTarget.value);
+        setSettingsMinValue(currentTargetMinValue);
+        if (currentTargetMinValue < 0 || currentTargetMinValue >= settingsMaxValue || settingsMaxValue < 0) {
+            setSettingsButtonIsDisable(true)
         } else {
-            setButtonIsDisable(false)
-            setMinValue(Number(event.currentTarget.value))
+            setSettingsButtonIsDisable(false)
         }
     };
-
-    const doSetValuesForCounter = () => {
-        setSum(minValue)
-        setMaxValueForCounter(maxValue)
-        setMinValueForCounter(minValue)
-        setButtonIsDisable(true)
+    const newSettingsForCounter = () => {
+        setCurrentSumCounter(settingsMinValue)
+        setMaxValueForCounter(settingsMaxValue)
+        setMinValueForCounter(settingsMinValue)
+        setSettingsButtonIsDisable(true)
     };
+
+    // Counter
+
+    const [maxValueForCounter, setMaxValueForCounter] = useState(settingsMaxValue);
+    const [minValueForCounter, setMinValueForCounter] = useState(settingsMinValue);
+    const [currentSumCounter, setCurrentSumCounter] = useState(settingsMinValue);
 
     const valuesIsNotCorrect = () => {
-        return minValue < 0 || maxValue < 0 || minValue >= maxValue
+        return settingsMinValue < 0 || settingsMaxValue < 0 || settingsMinValue >= settingsMaxValue
     };
 
     return (
         <div className={styles.mainWrapper}>
-            <Settings buttonIsDisable={buttonIsDisable}
-                      minValue={minValue}
-                      maxValue={maxValue}
-                      onChangeMaxValue={onChangeMaxValue}
-                      onChangeMinValue={onChangeMinValue}
-                      doSetValuesForCounter={doSetValuesForCounter}/>
-            <Counter minValue={minValue}
-                     maxValue={maxValue}
-                     sum={sum}
-                     setSum={setSum}
-                     minValueForCounter={minValueForCounter}
+            <Settings settingsButtonIsDisable={settingsButtonIsDisable}
+                      settingsMaxValue={settingsMaxValue}
+                      settingsMinValue={settingsMinValue}
+                      onChangeSettingsMaxValue={onChangeSettingsMaxValue}
+                      onChangeSettingsMinValue={onChangeSettingsMinValue}
+                      newSettingsForCounter={newSettingsForCounter}/>
+            <Counter currentSumCounter={currentSumCounter}
+                     setCurrentSumCounter={setCurrentSumCounter}
                      maxValueForCounter={maxValueForCounter}
+                     minValueForCounter={minValueForCounter}
                      valuesIsNotCorrect={valuesIsNotCorrect()}
             />
         </div>

@@ -3,14 +3,14 @@ import styles from './Button.module.css';
 
 type ButtonPropsType = {
     title: string
-    isActive: boolean
+    isDisable: boolean
     onClick: () => void
 };
 
-export const Button = ({title, isActive, onClick}: ButtonPropsType) => {
+export const Button = ({title, isDisable, onClick}: ButtonPropsType) => {
     return (
-        <button className={isActive ? styles.buttonStop : styles.button}
-                onClick={isActive ? undefined : onClick}>
+        <button className={isDisable ? styles.buttonStop : styles.button}
+                onClick={isDisable ? undefined : onClick}>
             <span>
                 {title}
             </span>

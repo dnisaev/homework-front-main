@@ -1,40 +1,44 @@
 import React from 'react';
-import styles from './Counter.module.css';
 import {Button} from "../Button/Button";
+import styles from './Counter.module.css';
 
 type CounterPropsType = {
-    sum: number
-    setSum: (sum: number) => void
+    currentSumCounter: number
+    setCurrentSumCounter: (currentSum: number) => void
     minValueForCounter: number
     maxValueForCounter: number
-    minValue: number
-    maxValue: number
     valuesIsNotCorrect: boolean
 }
 
-export const Counter = ({sum, setSum, minValueForCounter, maxValueForCounter, valuesIsNotCorrect}: CounterPropsType) => {
+export const Counter = ({
+                            currentSumCounter,
+                            setCurrentSumCounter,
+                            minValueForCounter,
+                            maxValueForCounter,
+                            valuesIsNotCorrect
+                        }: CounterPropsType) => {
 
-    const doPlus = () => setSum(sum += 1);
-    const doReset = () => setSum(minValueForCounter);
+    const doPlus = () => setCurrentSumCounter(currentSumCounter += 1);
+    const doReset = () => setCurrentSumCounter(minValueForCounter);
 
-    const isSumEqualMaxValueOrLessThenZero = sum < 0 || sum >= maxValueForCounter;
-    const isSumLessMinValue = sum < minValueForCounter + 1;
+    const currentSumIsNotCorrect = currentSumCounter < 0 || currentSumCounter >= maxValueForCounter;
+    const currentSumEqualMinValue = currentSumCounter === minValueForCounter;
 
     return (
         <div>
             <div className={styles.counterMain}>
                 <div className={styles.counterSum}>
-                    <span className={isSumEqualMaxValueOrLessThenZero ? styles.counterSumStop : ''}>
-                        {valuesIsNotCorrect ? 'error' : sum}
+                    <span className={currentSumIsNotCorrect ? styles.counterSumStop : ''}>
+                        {valuesIsNotCorrect ? 'error' : currentSumCounter}
                     </span>
                 </div>
                 <div className={styles.buttonWrapper}>
                     <Button title={'plus'}
                             onClick={doPlus}
-                            isActive={valuesIsNotCorrect || isSumEqualMaxValueOrLessThenZero}/>
+                            isDisable={valuesIsNotCorrect || currentSumIsNotCorrect}/>
                     <Button title={'reset'}
                             onClick={doReset}
-                            isActive={isSumLessMinValue}/>
+                            isDisable={currentSumEqualMinValue}/>
                 </div>
             </div>
         </div>

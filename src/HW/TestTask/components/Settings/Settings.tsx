@@ -1,40 +1,39 @@
-import styles from './Settings.module.css';
 import {Button} from "../Button/Button";
 import {ChangeEvent} from "react";
+import styles from './Settings.module.css';
 
 type SettingsPropsType = {
-    buttonIsDisable: boolean
-    maxValue: number
-    minValue: number
-    onChangeMaxValue: (event: ChangeEvent<HTMLInputElement>) => void
-    onChangeMinValue: (event: ChangeEvent<HTMLInputElement>) => void
-    doSetValuesForCounter: () => void
+    settingsButtonIsDisable: boolean
+    settingsMaxValue: number
+    settingsMinValue: number
+    onChangeSettingsMaxValue: (event: ChangeEvent<HTMLInputElement>) => void
+    onChangeSettingsMinValue: (event: ChangeEvent<HTMLInputElement>) => void
+    newSettingsForCounter: () => void
 };
 
 export const Settings = ({
-                             buttonIsDisable,
-                             minValue,
-                             maxValue,
-                             onChangeMaxValue,
-                             onChangeMinValue,
-                             doSetValuesForCounter
+                             settingsButtonIsDisable,
+                             settingsMaxValue,
+                             settingsMinValue,
+                             onChangeSettingsMaxValue,
+                             onChangeSettingsMinValue,
+                             newSettingsForCounter
                          }: SettingsPropsType) => {
-
     return (
         <div>
             <div className={styles.counterMain}>
                 <div className={styles.settingsSum}>
                     <div>
                         <span>max value:</span>
-                        <input value={maxValue} type={'number'} onChange={onChangeMaxValue}/>
+                        <input value={settingsMaxValue} type={'number'} onChange={onChangeSettingsMaxValue}/>
                     </div>
                     <div>
                         <span>min value:</span>
-                        <input value={minValue} type={'number'} onChange={onChangeMinValue}/>
+                        <input value={settingsMinValue} type={'number'} onChange={onChangeSettingsMinValue}/>
                     </div>
                 </div>
                 <div className={styles.buttonWrapper}>
-                    <Button title={'set'} isActive={buttonIsDisable} onClick={doSetValuesForCounter}/>
+                    <Button title={'set'} isDisable={settingsButtonIsDisable} onClick={newSettingsForCounter}/>
                 </div>
             </div>
         </div>
