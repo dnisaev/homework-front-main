@@ -8,8 +8,8 @@ export const Main = () => {
     // Settings
 
     const [settingsButtonIsDisable, setSettingsButtonIsDisable] = useState(true);
-    const [settingsMaxValue, setSettingsMaxValue] = useState<number>(1);
-    const [settingsMinValue, setSettingsMinValue] = useState<number>(0);
+    const [settingsMaxValue, setSettingsMaxValue] = useState(1);
+    const [settingsMinValue, setSettingsMinValue] = useState(0);
 
     const onChangeSettingsMaxValue = (event: ChangeEvent<HTMLInputElement>) => {
         let currentTargetMaxValue = Number(event.currentTarget.value);
